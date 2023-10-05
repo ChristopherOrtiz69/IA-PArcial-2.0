@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wander : MonoBehaviour
+public class Wander : Steering
 {
-
-}
-/*{
+    
     public float circleDistance;
     public float circleRadius;
     public float targetChange;
@@ -28,8 +26,8 @@ public class Wander : MonoBehaviour
     }
     public override Vector3 GetForce()
     {
-        Vector3 circleCenter = velocity.normalized * circleDistance;
-        Vector3 displacement = velocity.normalized * circleRadius;
+        Vector3 circleCenter = Velocity.normalized * circleDistance;
+        Vector3 displacement = Velocity.normalized * circleRadius;
         Quaternion rotation = Quaternion.AngleAxis(_rotationAngle, Vector3.up);
         displacement = rotation * displacement;
 
@@ -38,7 +36,7 @@ public class Wander : MonoBehaviour
 
 
         if (showVectors) DrawVectors(circleCenter, displacement);
-        _seek.target = target;
+        _seek.Target = Target;
         return _seek.GetForce() + wanderForce;
     }
 
@@ -46,7 +44,7 @@ public class Wander : MonoBehaviour
     {
         while (true)
         {
-            target = new Vector3(Random.Range(-targetSpace[0], targetSpace[0]), 0, Random.Range(-targetSpace[1], targetSpace[1]));
+            Target = new Vector3(Random.Range(-targetSpace[0], targetSpace[0]), 0, Random.Range(-targetSpace[1], targetSpace[1]));
             yield return new WaitForSeconds(targetChange);
         }
     }
@@ -66,4 +64,5 @@ public class Wander : MonoBehaviour
         Debug.DrawLine(transform.position + center, transform.position + center + displacement, Color.red);
         Debug.DrawLine(transform.position, transform.position + center + displacement, Color.blue);
     }
-}*/
+}
+
